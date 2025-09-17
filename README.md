@@ -104,7 +104,7 @@ POST https://ai-proxy.lab.epam.com/openai/deployments/{model}/chat/completions
     },
     {
       "role": "user",
-      "content": "Hello!"
+      "content": "Who is Andrej Karpathy?"
     }
   ],
   "tools": [
@@ -152,20 +152,44 @@ POST https://ai-proxy.lab.epam.com/openai/deployments/{model}/chat/completions
 ```
 
 ### Response Format
+With tool calls
 ```json
 {
   "choices": [
     {
       "message": {
         "role": "assistant",
-        "content": "Hello! How can I help you?",
-        "tool_calls": [...] // Present when tools are called
+        "content": "",
+        "tool_calls": [
+          {
+            "id": "call_6JriK7u5DL2heJ1lkw08WUFd",
+            "function": {
+              "arguments": "{\"request\":\"Andrej Karpathy profile\"}",
+              "name": "web_search_tool"
+            },
+            "type": "function"
+          }
+        ]
       },
-      "finish_reason": "stop" // or "tool_calls"
+      "finish_reason": "tool_calls" 
     }
   ]
 }
 ```
 
+Final response:
+```json
+{
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "Andrej Karpathy is..."
+      },
+      "finish_reason": "stop" 
+    }
+  ]
+}
+```
 ---
 # <img src="dialx-banner.png">
