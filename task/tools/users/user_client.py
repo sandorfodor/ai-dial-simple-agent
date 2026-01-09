@@ -4,7 +4,7 @@ import requests
 
 from task.tools.users.models.user_info import UserCreate, UserUpdate
 
-USER_SERVICE_ENDPOINT = "http://localhost:8041"
+USER_SERVICE_ENDPOINT = "http://userservice:8000"
 
 class UserClient:
 
